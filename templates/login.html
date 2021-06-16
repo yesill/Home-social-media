@@ -1,0 +1,58 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/stylelogreg.css' %}">
+</head>
+<style>
+    body {
+        background-image: url("/static/img/wallpaperhome/7.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<body>
+
+    <!---   <form action='./login/home.html' method="GET">
+        <table id="Signin">
+            <tr style="height: 20px">
+                <td><label for="email">Email</label> </td>
+                <td><label for="logpassword">Password</label></td>
+                <td rowspan=3><input type="submit" value="Sign In" id="Signinbutton"></td>
+            </tr> -->
+
+    <div class="login-box">
+        <form method="POST">
+            {% csrf_token %}
+            <h1>Login</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger"><p align="center" style="background: red;">{{ message }}</p></div>
+                {% endfor %}
+            {% endif %}
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" name="username" required>
+            </div>
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Sign in</button>
+        </form>
+
+        <a href="/register"> Forgot Password?</a>
+        <a href="/register"> Not registered yet?</a>
+
+    </div>
+
+
+</body>
+
+</html>

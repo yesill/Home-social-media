@@ -1,0 +1,40 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylelogreg.css' %}">
+</head>
+<style>
+    body {
+        background-image: url(static/img/wallpaperhome/13.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<body>
+
+    <!---   <form action='./login/home.html' method="GET">
+        <table id="Signin">
+            <tr style="height: 20px">
+                <td><label for="email">Email</label> </td>
+                <td><label for="logpassword">Password</label></td>
+                <td rowspan=3><input type="submit" value="Sign In" id="Signinbutton"></td>
+            </tr> -->
+    <div id="Welcome Home!"></div>
+    <div class="register-box">
+        <h1>Welcome Home!</h1>
+
+        <input type="button" class="btn" value="Login" onclick="location.href='/login'"/>
+        <input type="button" class="btn" value="Register" onclick="location.href='/register'"/>                    
+    </div>
+
+</body>
+
+</html>

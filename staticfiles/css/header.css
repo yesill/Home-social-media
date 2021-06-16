@@ -1,0 +1,491 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border: 0px;
+    background-color: rgb(4, 25, 51);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 1100px;
+    height: 100%;
+}
+
+
+/*============	HEADER	===================*/
+
+.header {
+    width: 100%;
+    padding:5px;
+    height: 50px;
+    background-color: RGB(4,25,51);
+    position: fixed;
+    z-index: 9999;
+}
+
+.headerfixed {
+    width: 100%;
+    height: 50px;
+}
+
+.header .wrapper .logoletter {
+    padding-top: 5px;
+}
+
+#searching {
+    display: inline;
+}
+
+#search {
+    /*width: 420px;*/
+    width: 320px;
+    background-image: url('../images/login/search.png');
+    background-position: 5px 4px;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 8px 50px 10px 20px;
+    border: 0px;
+    position: absolute;
+    top: 10px;
+    /*margin-left: 100px;*/
+    margin-left: 0px;
+    opacity: 0.2;
+}
+
+#search:hover{
+    opacity: 1;
+}
+
+.icon-bar {
+    float: right;
+    /*width: 420px;*/
+    width: 410px;
+    height: 45px;
+    position: relative;
+}
+
+.icon-bar ul {
+    margin: 0px;
+    margin-top: 3px;
+    height: 42px;
+    padding-left: 40px;
+}
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.icon-bar ul li {
+    display: inline-block;
+    /*margin-left: 20px;
+  	padding: 0px 5px;*/
+    height: 42px;
+    width: 70px;
+}
+
+#notify {
+    position: absolute;
+    width: 80%;
+    height: 370px;
+    background-color: rgba(0, 0, 0, 0.7);
+    right: -4px;
+    top: 112%;
+    display: none;
+    
+}
+.home-profile svg{
+    fill : RGB(255,255,255 var( white-on-dark));
+
+}
+
+.icon-bar ul li:hover #notify {
+    display: block;
+}
+
+img.logoletter{
+    width: 120px;
+    height: 45px;
+}
+
+#notify p {
+    color: white;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.icon-bar img {
+    width: 34px;
+    height: 27px;
+    padding-left: 20px;
+}
+
+.icon-bar a {
+    width: 52px;
+    height: 50px;
+    position: relative;
+}
+
+.icon-bar a p {
+    display: inline;
+    position: absolute;
+    left: 0px;
+    top: 2px;
+    color: black;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+
+#p1 {
+    padding-left: 10px;
+}
+
+#p2 {
+    padding-left: 10px;
+}
+
+#p3 {
+    padding-left: 10px;
+}
+
+#p4 {
+    padding-left: 10px;
+}
+
+#p5 {
+    padding-left: 10px;
+}
+
+
+/*========== SIDEBAR LEFT ================*/
+
+.sidebarleft {
+    width: 200px;
+    /*height: 100px;*/
+    background-color: RGB(4,25,51);
+    position: fixed;
+    top: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #002952;
+    border-radius: 10px;
+    margin-top: 11px;
+  
+}
+
+.leftfixed {
+    width: 200px;
+    height: 500px;
+    float: left;
+    margin-right: 20px;
+}
+
+.sidebarleft img {
+    width: 150px;
+    height: 150px;
+    padding: 25px;
+    padding-bottom: 30px;
+    border-radius: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebarleft #sidename {
+    text-align: center;
+    position: relative;
+    top: -25px;
+    color: #fffdfd;
+    margin: 0px;
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sidebarleft p {
+    text-align: center;
+    margin: 0px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #B7B7B7;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #525252;
+}
+
+#ssn {
+    position: relative;
+    color:#fffdfd;
+    top: -8px;
+}
+
+/*.quotes{
+    text-align: center;
+    background: RGB(4,21,25);
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    right: 30%;
+
+}*/
+
+#viewall {
+    display: block;
+    /*margin-left: 75px;*/
+    margin: 0 auto;
+    font-size: 13px;
+    border-radius: 5px;
+    border: 0px;
+    outline: 0px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    width: 55px;
+    text-align: center;
+    padding: 2px;
+    margin-bottom: 15px;
+}
+
+#viewall:hover {
+    background-color: RGB(4,25,51);
+}
+
+.sidebarleft hr {
+    width: 75%;
+    border-radius: 2;
+    border: 0.4px solid #ffffff;
+    margin-bottom: 0px;
+}
+
+#nosociety {
+    color: #010261;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#societyname a {
+    color: black;
+}
+
+#societyname a:hover {
+    color: #b4b4b4;
+}
+
+#logout {
+    margin: 12px;
+    margin-top: 12px;
+    text-align: center;
+    background-color: RGB(4,25,51);
+}
+
+#logout a {
+    display: block;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 4px;
+}
+
+#logout a:hover {
+    color: black;
+}
+
+
+/*=========== SIDEBAR RIGHT =============*/
+
+
+/*parent of suggestion*/
+
+.rightfixed {
+    float: right;
+    width: 290px;
+    height: 300px;
+    clear: right;
+}
+
+
+/*parent of right content*/
+
+.sidebarright {
+    position: fixed;
+    /*float: right;*/
+    width: 250px;
+    /*height: 240px;*/
+    background-color: RGB(4,25,51);
+    border: 1px solid #28394b;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 3px;
+    padding-top: 0px;
+    padding-bottom: 30px;
+}
+
+
+/*design of suggestion content*/
+
+.suggesfixed {
+    position: relative;
+    top: 90px;
+}
+
+
+/*design of suggestion text*/
+
+#suggestion {
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    float: left;
+    top: 50px;
+    left: 2px;
+    text-decoration: underline;
+    color: #666666;
+    font-size: 14px;
+    height: 300px;
+}
+
+
+/*design of rightcontent i.e suggestion*/
+
+.rightcontent {
+    /*margin-top: -20px;*/
+    margin-top: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    top: 20px;
+    height: 40px;
+}
+
+
+/*design userimage in suggestion*/
+
+.sidebarright .rightcontent img {
+    display: inline;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+}
+
+
+/*design of username in suggestion*/
+
+.rightcontent p {
+    display: block;
+    width: 120px;
+    margin: auto auto;
+    margin-left: 15px;
+    margin-top: 12px;
+    float: left;
+    color: white;
+    text-align: left;
+    font-size: 14px;
+}
+
+
+/*design of connect in suggestion*/
+
+.rightcontent a {
+    display: block;
+    float: right;
+    width: 68px;
+    font-size: 13px;
+    margin-top: 7px;
+    text-decoration: none;
+    text-align: center;
+    color: whitesmoke;
+    height: 19px;
+    padding: 1px;
+    border: 1px solid #fffdfd;
+    border-radius: 4px;
+    /*transition: width 2s ease-in-out;*/
+}
+
+
+/*hover effect on connect button*/
+
+.rightcontent a:hover {
+    background-color: #001815;
+    width: 70px;
+    opacity: 0.5;
+    height: 21px;
+    border: none;
+    color: white;
+}
+
+
+/*horizontal line below suggestion*/
+
+.rightfixed .sidebarright hr {
+    border: 0.5px solid RGB(4,25,51);
+    color: RGB(4,25,51);
+    outline: 0px;
+    width: 80%;
+    box-shadow: 1px 1px 5px #00032a;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+
+/*about creator info design below suggestion*/
+
+.foot {
+    background-color: RGB(4,25,51);
+    text-align: center;
+    position: relative;
+    top: auto;
+}
+
+.foot ul {
+    padding: 5px;
+    list-style-type: none;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.foot ul li {
+    display: inline-block;
+    padding: 3px;
+}
+
+.foot ul li a {
+    text-decoration: underline;
+    /*padding: 10px;*/
+    color: #615D5E;
+    font-size: 13px;
+}
+
+
+/*hover effect on link below suggestion*/
+
+.foot ul li a:hover {
+    color: #353750;
+    font-size: 14px;
+}
+
+
+/*copyright info design*/
+
+.foot p {
+    color: #666666;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 6px;
+    padding-bottom: 1%;
+}
+
+
+/*home logo below suggestion*/
+
+.foot img {
+    width: 50px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+}

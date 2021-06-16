@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- CSS and JavaScript referansları -->
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+
+    <script src="{% static 'js/home.js' %}"></script>
+
+    <style>
+    .center {
+      margin: auto;
+      margin-top: 20px;
+      width: 60%;
+    }
+    </style>
+
+</head>
+<body>
+    {% include "includes/navbar.html" %}
+
+    <div class="center">
+        <div class="mainpost">
+            <div class="userimg">
+                <img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188" />
+            </div>
+            <div class="username ">
+                <p class="name ">{{post.author}}</p>
+            </div>
+            <p class="time ">{{post.created_date}}</p>
+            <p class="quotes ">
+                {{post.content}}
+            </p>
+            <!--
+            <div class="likedislike">
+                <p class="like ">
+                    <span class="nooflike " id="like1">{{post.likers|length}} </span> likes &nbsp
+                </p>
+                <form name="like_form_post" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" {% if request.user.username in post.likers %} style="background-color: red;" {% else %} style="background-color: green;" {% endif %} name="like_submit_post!:!{{post.id}}!:!" id="thumbsup_post" class="fa fa-thumbs-up"></button>
+                </form>
+            </div>
+            -->
+            <div class="likedislike">
+                <form name="like_form_post" method="POST">
+                    {% csrf_token %}
+                    <div class="likedislike">
+                        <p class="like">
+                            <button type="submit" class="like__btn" name="like_submit_post!:!{{post.id}}!:!">
+                                {% if request.user.username in post.likers %}
+                                    <span id="countP{{post.id}}">{{post.likers|length}}</span>  ♥
+                                {% else %}
+                                    <span id="countN{{post.id}}">{{post.likers|length}}</span>  ♡
+                                {% endif %}
+                            </button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <hr> <p>comments</p> <hr>
+
+            <div class="main mainpost">
+                <form method="POST">
+                    <p style="margin-left: 10px;">New Comment</p>
+                    <p class="quotes">
+                        <textarea id="mypara" name="content" placeholder="Your comment here."></textarea>
+                    </p>
+                    {% csrf_token %}
+                    <button type="submit" name="comment_submit" id="postmypost" class="postmypost">Comment</button>
+                </form>
+            </div>
+
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="comments" style="margin-top: 10px; margin-left: 50px;">
+                        <div class="mainpost">
+                            <div class="userimg">
+                                <img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188" />
+                            </div>
+                            <div class="username ">
+                                <p class="name ">{{comment.author}}</p>
+                            </div>
+                            <p class="time ">{{comment.created_date}}</p>
+                            <p class="quotes ">{{comment.content}}</p>
+                            <!--<div class="likedislike">
+                                <p class="like ">
+                                    <span class="nooflike " id="like{{forloop.counter}}">{{comment.likers|length}}</span> likes &nbsp
+                                </p>
+                                <form name="like_form_comment" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" {% if request.user.username in comment.likers %} style="background-color: red;" {% else %} style="background-color: green;" {% endif %} name="like_submit_comment!:!{{comment.id}}!:!" id="thumbsup{{forloop.counter}}" class="fa fa-thumbs-up"></button>
+                                </form>
+                            </div>-->
+                            <div class="likedislike">
+                                <form name="like_form_comment" method="POST">
+                                    {% csrf_token %}
+                                    <div class="likedislike">
+                                        <p class="like">
+                                            <button type="submit" class="like__btn" name="like_submit_comment!:!{{comment.id}}!:!">
+                                                {% if request.user.username in comment.likers %}
+                                                    <span id="countP{{comment.id}}">{{comment.likers|length}}</span>  ♥
+                                                {% else %}
+                                                    <span id="countN{{comment.id}}">{{comment.likers|length}}</span>  ♡
+                                                {% endif %}
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="comments" style="margin-top: 10px; margin-left: 50px;">
+                    <div class="mainpost">
+                        <p>There is no comment yet!</p>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</body>
+</html>

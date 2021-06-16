@@ -1,0 +1,66 @@
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/stylelogreg.css' %}">
+</head>
+<style>
+    body {
+        background-image: url("/static/img/wallpaperhome/5.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
+<body>
+    <div id="register"></div>
+    <div class="register-box">
+        <form method="POST">
+            {% csrf_token %}
+            <h1>Register</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger"><p align="center" style="background: red;">{{ message }}</p></div>
+                {% endfor %}
+            {% endif %}
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <input type="email" placeholder="Mail" name="email" required>
+            </div>
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" name="username" required>
+            </div>
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" name="password" id="password" required>
+            </div>
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" name="confirm" id="confirm" required>
+            </div>
+                <button type="submit" onclick="register_button()" class="btn">Sign up</button>
+        </form>
+
+        <a href="/login"> Already have an account? </a>
+    </div>
+
+    <script>
+        function register_button(){
+            var form = document.forms["form1"];
+            var pw1 = form["password"].value;
+            var pw2 = form["confirm"].value;
+            if (pw1 != pw2){
+                alert("Girilen şifreler aynı değil!")
+            }
+        }
+    </script>
+
+</body>
+
+</html>

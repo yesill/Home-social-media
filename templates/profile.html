@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <title>Home</title>
+    <!-- CSS and JavaScript referansları -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}">
+    
+    <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+    <style>
+        a.fill-div {
+            display: block;
+            height: 100%;
+            width: 100%;
+            text-decoration: none;
+        }
+        a, a:visited, a:hover, a:active {
+            color: inherit;
+        }
+        #bio_input {
+            width: 122px;
+            border-radius: 8px;
+            font-size: 16px;
+            padding: 12px 50px 12px 10px;
+            padding-right: 8px;
+            border: 0px;
+            margin-left: 30px;
+            opacity: 0.2;
+            display: inline;
+        }
+        #bio_input:hover{
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body onload="newpost();">
+    <!-- Header -->
+    {% include "includes/navbar.html" %}
+    <!-- header kısmısının sonu artık -->
+
+    <!-- Content yeri -->
+    <div class="content">
+        <!-- Start wrapper -->
+        <div class="wrapper">
+        <div>
+            <!-- Start Left section -->
+                <div class="leftfixed">
+                <!--  start sidebar left -->
+                <div class="sidebarleft">
+                    <img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188"/>
+                    <p id="sidename">{{request.user.username}}</p>
+                    <p id="ssn" style="font-size: 16px; border: 1px solid #002952; border-radius: 10px; margin-left: 5px; margin-right: 5px;s">{% if request.user.first_name %}{{request.user.first_name}}{% else %}There is no biography text yet. You can add one in the profile page!{% endif %}</p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="bio" placeholder="bio değiştir." id="bio_input">
+                    </form>
+                    <hr>
+                    <p id="logout"><a href=" ">Likes</a></p>
+                </div>
+                <!-- End of sidebar left -->
+            </div>
+        </div>
+            <!--  leftfixed sonu -->
+
+            <!-- start of main content section -->
+            <div class="mainnotfixed" id="mainnotfixed" style="margin-top: 22px; padding-bottom: 10px;">
+                <!-- Start of post an content -->
+                <div class="main mainpost" style="margin-bottom:10px; padding-bottom:10px; top:70px;">
+
+                    <div class="userimg">
+                        <img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188"/>
+                    </div>
+                    <div class="username">
+                        <p class="name" style="top:15px;">{{request.user.username}}</p>
+                    </div>
+                    <p class="quotes" style="position: relative; margin-top: 20px; padding-bottom: -20px;">
+                        <textarea id="mypara" placeholder="Tell me about your day, or something inspiring!"></textarea>
+                    </p>
+                    <!-- image load to post -->
+                    <div class="post">
+                        <img id="load2" class="postimg" />
+                    </div>
+
+                    <div class="postbar">
+                        <input type="file" accept="images/*" id="chooseimg" onchange="loadFile(event)" onmouseover="onbuttoncolor()" onmouseout="outbuttoncolor()" />
+                        <button type="button" class="imgbttn" id="imgbttn">&#x1f4f7; Images</button>
+                        <button type="button" id="postmypost" class="postmypost" onclick="mypost();">Post</button>
+                    </div>
+
+                </div>
+                <!-- content sonu-->
+
+                <div class="allpost">
+                    <!-- postlar -->
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="mainpost">
+                                <a href="/post/{{post.id}}" class="fill-div">
+                                    <div class="userimg">
+                                        <img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188" />
+                                    </div>
+                                    <div class="username ">
+                                        <p class="name ">{{post.author}}</p>
+                                    </div>
+                                    <p class="time ">{{post.created_date}}</p>
+                                </a>
+                                <p class="quotes" >{{post.content}}</p>
+                                <div class="likedislike">
+                                    <form name="like_form" method="POST">
+                                        {% csrf_token %}
+                                        <div class="likedislike">
+                                            <p class="like">
+                                                <button class="like__btn" name="like_submit!:!{{post.id}}!:!">
+                                                    {% if request.user.username in post.likers %}
+                                                        <span id="countP{{post.id}}">{{post.likers|length}}</span>  ♥
+                                                    {% else %}
+                                                        <span id="countN{{post.id}}">{{post.likers|length}}</span>  ♡
+                                                    {% endif %}
+
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    {% endif %}
+
+                    <!--buradan silemeye basla-->
+                    <div class="mainpost">
+                        <div class="userimg">
+                            <img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188" />
+                        </div>
+                        <div class="username ">
+                            <p class="name">{{request.user.username}}</p>
+                        </div>
+                        <p class="time ">2min ago</p>
+                        <p class="quotes" ></p>
+                            Cat picture. Everyone loves cats.
+                        </p>
+                        <br>
+                        <div class="post">
+                            <img class="postimg" src="https://www.meme-arsenal.com/memes/5a36ac17608c1e504ed445197cca6762.jpg"/>
+                        </div>
+                        <br>
+
+                        <div class="likedislike">
+                            <div class="likedislike">
+                                <p class="like">
+                                    <button class="like__btn" name="like_submit!:!{{post.id}}!:!">
+                                        {% if request.user.username in post.likers %}
+                                            <span id="countP{{post.id}}">{{post.likers|length}}</span>  ♥
+                                        {% else %}
+                                            <span id="countN{{post.id}}">{{post.likers|length}}</span>  ♡
+                                        {% endif %}
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mainpost">
+                        <div class="userimg "><img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188"/>
+                        </div>
+                        <div class="username">
+                            <p class="name ">{{request.user.username}}</p>
+                        </div>
+                        <p class="time">8min ago</p>
+                        <p class="quotes ">
+							Pink Floyd, 1965'te Londra'da kurulan İngiliz progresif/psikedelik rock müzik grubu. Felsefî şarkı sözleri, yenilikçi albüm kapakları, etkileyici-girift sahne şovları ile Pink Floyd, dünya çapında başarıya ulaşmıştır.
+
+Pink Floyd, gitar ve vokalde Syd Barrett, davulda Nick Mason, basta ve vokalde Roger Waters ve klavye ve vokalde Richard Wright adlı üniversite öğrencileri tarafından kuruldu[2]. 1960'ların sonunda Londra'nın yeraltı müzik dünyasında verdikleri konserlerle popülerlik kazandılar ve Barrett'in liderliği altında listelere giren iki single ve başarılı bir ilk albüm olan The Piper at the Gates of Dawn'u (1967) yayımladılar. Gitarist ve vokalist David Gilmour Aralık 1967'de gruba katıldı. Zihinsel rahatsızlık geçiren Barrett, durumunun kötüleşmesi ile Nisan 1968'de gruptan ayrıldı. Waters grubun birinci söz yazarı ve yaratıcı lideri oldu ve The Dark Side of the Moon (1973), Wish You Were Here (1975), Animals (1977), The Wall (1979) ve The Final Cut (1983) gibi konsept albümlere imza attı. The Dark Side of the Moon ve The Wall tüm zamanların en çok satan albümlerinden oldu. Grubun simgesi haline gelmiş olan The Dark Side of the Moon, tüm zamanların en uzun süre zirvede kalan albümü olarak Billboard 200 listesinde 741 hafta kalmıştır.
+                        </p>
+
+                        <div class="likedislike">
+                            <div class="likedislike">
+                                <p class="like">
+                                    <button class="like__btn" name="like_submit!:!{{post.id}}!:!">
+                                        {% if request.user.username in post.likers %}
+                                            <span id="countP{{post.id}}">3</span>  ♥
+                                        {% else %}
+                                            <span id="countN{{post.id}}">3</span>  ♡
+                                        {% endif %}
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mainpost">
+                    <div class="userimg "><img src="https://im0-tub-ru.yandex.net/i?id=143febb7b8cd79671e4f4b52e3cc12a1&ref=rim&n=33&w=188&h=188"/>
+                    </div>
+                    <div class="username">
+                        <p class="name ">{{request.user.username}}</p>
+                    </div>
+                    <p class="time">8min ago</p>
+                    <p class="quotes"></p>
+                    <div class="post">
+                        <img class="postimg" src="https://c.wallhere.com/photos/9d/d4/Anime_view_btf_view-1399103.jpg!d">
+                    </div>
+                    <br>
+
+                    <div class="likedislike">
+                        <div class="likedislike">
+                            <p class="like">
+                                <button class="like__btn" name="like_submit!:!{{post.id}}!:!">
+                                    {% if request.user.username in post.likers %}
+                                        <span id="countP">1</span>  ♥
+                                    {% else %}
+                                        <span id="countN">1</span>  ♡
+                                    {% endif %}
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!--baraya kadar sil-->
+
+
+            </div> 
+
+<div>  
+                <!-- end of posted content view -->
+
+               <!-- button to view more previous post -->
+             <!--   <button type="button " id="viewmore " class="viewmore " style="color: whitesmoke;" onclick="newpost(); ">View More</button> </div>
+            </div> 
+              End of main content section -->
+
+            <!-- start of right section suggestion user -->
+            
+        
+                <!-- End of right fixed -->
+
+        
+            <!-- End of right section suggestion user -->
+
+            <!-- Start of about home -->
+            <div class="rightfixed ">
+
+                <div class="sidebarright " style="width: 280px;padding: 4px;margin-top: 110px;height: 150px; ">
+                    <hr style="margin-bottom: 15px; ">
+                    <div class="foot ">
+
+                        <ul>
+                            <li><a href=" ">About</a></li>
+                            <li><a href=" ">Contact</a></li>
+                            <li><a href=" ">Privacy and Policy</a></li>
+                            <li><a href=" ">Help</a></li>
+                        </ul>
+                        <img src="{% static 'img/fccd01cc59e8b011bccb9fab270e2d7f-letterhead-red-neon-font-h-by-vexels.png' %}" />
+                    </div>
+                </div>
+            </div>
+            <!-- End of about home -->
+        </div>
+        <!-- End of wrapper -->
+    </div>
+    <!-- End of content section -->
+
+
+</body>
+</html>
